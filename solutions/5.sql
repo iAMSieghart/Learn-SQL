@@ -1,5 +1,4 @@
-SELECT bands.name AS 'Band Name'
-FROM bands
-LEFT JOIN albums ON bands.id = albums.band_id
-GROUP BY albums.band_id
-HAVING COUNT(albums.id) = 0;
+SELECT b.name AS 'Band Name'
+FROM bands b
+LEFT JOIN albums a ON a.band_id = b.ID
+WHERE NOT EXISTS(SELECT * from bands WHERE a.band_id = b.id);
